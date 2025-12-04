@@ -19,7 +19,10 @@ const Navbar = () => {
     },[]);
 
   return (
-    <div className='navbar py-7 flex items-center justify-between px-6'>
+    <div className='navbar sticky left-0 top-0 right-0 w-full py-3 flex items-center justify-between px-6
+    transition-all duration-300 ease-in-out rounded-b-4xl
+    ${active ? "bg-black/80 backdrop-blur-md shadow-lg" : "bg-transparent"}
+    '>
         <div className='logo'>
         <h1 className='text-3xl font-bold bg-white text-black p-1 md:bg-transparent md:text-white'>Portofolio</h1>
         </div>
