@@ -1,6 +1,7 @@
 import DataImage from "./data";
 import { useState } from "react";
 import { HiArrowDownTray, HiEnvelope } from "react-icons/hi2";
+import { listTools,listProyek } from "./data";
 
 function App() {
   const [count, setCount] = useState(0);
@@ -58,7 +59,12 @@ function App() {
 
       {/* tentang */}
       <div className="tentang mt-32 py-10">
-        <div className="xl:w-2/3 lg:w-3/4 mx-auto p-7 bg-zinc-800 rounded-lg">
+        <div className="xl:w-2/3 lg:w-3/4 w-full mx-auto p-7 bg-zinc-800 rounded-lg">
+          <img
+            src={DataImage.HeroImage}
+            alt="Image"
+            className="w-12 rounded-md mb-10 sm:hidden"
+          />
           <p className="text-base/loose">
             Seorang UI/UX dan Frontend Developer yang fokus bikin tampilan
             mobile banking jadi lebih modern, simple, dan nyaman dipakai. Udah
@@ -68,7 +74,11 @@ function App() {
             kualitas produk naik level.
           </p>
           <div className="flex items-center justify-between">
-            <img src={DataImage.HeroImage} alt="Image" className="w-12 rounded-md" />
+            <img
+              src={DataImage.HeroImage}
+              alt="Image"
+              className="w-12 rounded-md sm:block hidden"
+            />
             <div className="flex items-center gap-6">
               <div>
                 <h1 className="text-4xl mb-1">
@@ -85,9 +95,62 @@ function App() {
             </div>
           </div>
         </div>
+
+        <div className="tools mt-32">
+          <h1 className="text-4xl/snug font-bold mb-4">Tools yang di pakai</h1>
+          <p className="xl:w-2/5 lg:w-2/4 md:w-2/3 sm:w-3/4 w-full text-base/loose opacity-50">
+            Berikut ini beberapa tools yang saya pakai untuk membuat website dan
+            design
+          </p>
+
+          <div className="tools-box mt-14 grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-1 gap-4">
+            {listTools.map((tool) => (
+              <div
+                className="flex items-center gap-2 p-3 border border-neutral-700 rounded-2xl
+            hover:bg-zinc-800 group" key={tool.id} >
+                <img
+                  src={tool.gambar}
+                  alt="Tools Image"
+                  className="w-14 rounded-2xl bg-zinc-800 p-1 group-hover:bg-zinc-900 "
+                />
+                <div>
+                  <h4 className="font-bold">{tool.nama}</h4>
+                  <p className="text-neutral-400">{tool.ket}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
       </div>
 
       {/* tentang */}
+
+      {/* proyek */}
+      <div className="proyek mt-32 py-10">
+        <h1 className="text-center text-4xl font-bold mb-2">Project</h1>
+        <p className="text-base/loose text-center text-neutral-400">Berikut ini beberapa project 
+        yang telah saya kerjakan</p>
+        <div className="project-box mt-14 grid grid-cols-3 gap-4">
+          {listProyek.map((proyek) => (
+            <div key={proyek.id}>
+              <img src={proyek.gambar} alt="Proyek image" />
+              <div>
+                <h1 className="text-2xl font-bold my-4">{proyek.nama}</h1>
+                <p className="text-base/loose mb-4">{proyek.desk}</p>
+                <div className="flex flex-wrap gap-2">
+                  {proyek.tools.map((tool, index) => (
+                    <p className="py-1 px-3 border border-zinc-500 rounded-md font-semibold" key={index}>{tool}</p>
+                  ))}
+                </div>
+                <div>
+                  <a href="">Lihat Website</a>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+      {/* proyek */}
     </>
   );
 }
