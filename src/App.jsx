@@ -1,10 +1,10 @@
 import DataImage from "./data";
-import { useState } from "react";
-import { HiArrowDownTray, HiEnvelope } from "react-icons/hi2";
-import { listTools,listProyek } from "./data";
+// import { useState } from "react";
+import { HiArrowDownTray, HiEnvelope,  HiArrowRight   } from "react-icons/hi2";
+import { listTools, listProyek } from "./data";
 
 function App() {
-  const [count, setCount] = useState(0);
+  // const [count, setCount] = useState(0);
   return (
     <>
       <div className="hero grid md:grid-cols-2 items-center pt-10 xl:gap-0 gap-6 grid-cols-1">
@@ -103,17 +103,45 @@ function App() {
             design
           </p>
 
-          <div className="tools-box mt-14 grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-1 gap-4">
+          <div className="tools-box mt-14 grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-1 gap-4 [perspective:1000px]">
             {listTools.map((tool) => (
+              
               <div
-                className="flex items-center gap-2 p-3 border border-neutral-700 rounded-2xl
-            hover:bg-zinc-800 group" key={tool.id} >
+                key={tool.id}
+                className=" group flex items-center gap-2 p-4 border border-neutral-700 rounded-2xl
+               bg-zinc-900 hover:bg-zinc-800
+               transition-transform duration-200 ease-out will-change-transform"
+                style={{ transformStyle: "preserve-3d" }}
+                onMouseMove={(e) => {
+                  const card = e.currentTarget;
+                  const rect = card.getBoundingClientRect();
+
+                  const x = e.clientX - rect.left;
+                  const y = e.clientY - rect.top;
+
+                  const centerX = rect.width / 2;
+                  const centerY = rect.height / 2;
+
+                  const rotateX = ((y - centerY) / centerY) * -10;
+                  const rotateY = ((x - centerX) / centerX) * 10;
+
+                  card.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.transform =
+                    "rotateX(0deg) rotateY(0deg)";
+                }}
+              >
                 <img
                   src={tool.gambar}
                   alt="Tools Image"
-                  className="w-14 rounded-2xl bg-zinc-800 p-1 group-hover:bg-zinc-900 "
+                  className="w-14  p-1
+                 transition-transform duration-200
+                 group-hover:scale-110"
+                  style={{ transform: "translateZ(25px)" }}
                 />
-                <div>
+
+                <div style={{ transform: "translateZ(15px)" }}>
                   <h4 className="font-bold">{tool.nama}</h4>
                   <p className="text-neutral-400">{tool.ket}</p>
                 </div>
@@ -128,22 +156,36 @@ function App() {
       {/* proyek */}
       <div className="proyek mt-32 py-10">
         <h1 className="text-center text-4xl font-bold mb-2">Project</h1>
-        <p className="text-base/loose text-center text-neutral-400">Berikut ini beberapa project 
-        yang telah saya kerjakan</p>
-        <div className="project-box mt-14 grid grid-cols-3 gap-4">
+        <p className="text-base/loose text-center text-neutral-400">
+          Berikut ini beberapa project yang telah saya kerjakan
+        </p>
+        <div className="project-box mt-14 grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 gap-4">
           {listProyek.map((proyek) => (
-            <div key={proyek.id}>
-              <img src={proyek.gambar} alt="Proyek image" />
+            <div
+              key={proyek.id}
+              className="bg-neutral-800 p-4 rounded-2xl  "
+            >
+              <img
+                src={proyek.gambar}
+                alt="Proyek image"
+                className="rounded-2xl"
+              />
               <div>
                 <h1 className="text-2xl font-bold my-4">{proyek.nama}</h1>
                 <p className="text-base/loose mb-4">{proyek.desk}</p>
                 <div className="flex flex-wrap gap-2">
                   {proyek.tools.map((tool, index) => (
-                    <p className="py-1 px-3 border border-zinc-500 rounded-md font-semibold" key={index}>{tool}</p>
+                    <p
+                      className="py-1 px-3  rounded-md font-semibold bg-neutral-700"
+                      key={index}
+                    >
+                      {tool}
+                    </p>
                   ))}
                 </div>
-                <div>
-                  <a href="">Lihat Website</a>
+                <div className="inline-flex items-center p-2 bg-violet-900 rounded-full mt-4 hover:scale-105 transition-all duration-200 cursor-pointer">
+                  <a href="" className="px-2 py-1">Lihat Website</a>
+                  <HiArrowRight />
                 </div>
               </div>
             </div>
