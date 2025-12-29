@@ -5,3 +5,21 @@
     font-family: jakarta-sans, sans-serif;
   }
 }
+
+@theme{
+  /* main color */
+    --color-primary:#00AEEF; /*Sky - 500 */
+    --color-primary-medium:#66CFF1; /*Sky - 300 */
+    --color-primary-light:#BFEAF9; /*Sky - 100 */
+    --color-primary-lighter:#E6F7FD; /*Sky - 50 */
+    --color-primary-hover:#0099D6; /*Sky - 600 */
+
+  /* text color */
+  --color-text-primary: #101828; /*Gray - 900 */
+  --color-text-secondary: #737373;  /*Neutral-500 */
+  --color-text-inverse: #FFFFFF; /*White */
+  --color-text-active: #00AEEF; /*Sky - 500 */
+  --color-text-hover: #0099D6; /*Sky - 600 */
+
+  
+}
