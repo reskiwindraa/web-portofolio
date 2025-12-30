@@ -1,8 +1,10 @@
 import DataImage from "./data";
 // import { useState } from "react";
-import { HiArrowDownTray, HiEnvelope,  HiArrowRight   } from "react-icons/hi2";
+import { HiArrowDownTray, HiEnvelope, HiArrowRight } from "react-icons/hi2";
+import { AiFillInstagram, AiFillLinkedin } from "react-icons/ai";
 import { listTools, listProyek } from "./data";
 import Button from "./components/ui/Button";
+
 
 function App() {
   // const [count, setCount] = useState(0);
@@ -23,7 +25,15 @@ function App() {
             </div>
           </div>
 
-          <h1 className="text-5xl/tight text-text-primary font-bold mb-6">Hi, Saya Jhon Thor</h1>
+          <div className="flex flex-col">
+          <h1 className="text-5xl/tight text-text-active font-bold">
+            Hi,Saya
+          </h1>
+          <h1 className="text-5xl/tight text-text-primary font-bold mb-6">
+            Robet Davis Chaniago
+          </h1>
+          </div>
+
           <p className="text-text-secondary font-mono ">
             Seorang UI/UX dan Frontend Developer dengan fokus pada pengembangan
             antarmuka mobile banking yang modern, intuitif, dan berorientasi
@@ -35,21 +45,41 @@ function App() {
             berdampak besar.
           </p>
           <div className="flex items-center gap-4 text-center mt-4">
-            
-            <Button variant="primary">Download CV
+            <Button variant="primary">
+              Download CV
               <HiArrowDownTray />
             </Button>
 
-            <Button variant="secondary">Kontak Gua
+            <Button variant="secondary">
+              Kontak Gua
               <HiEnvelope />
             </Button>
-        
           </div>
         </div>
         <img
           src={DataImage.HeroImage}
           alt="Hero Image"
-          className="w-[500px] md:ml-auto"
+          className="w-[500px] md:ml-auto rounded-4xl mt-12 hover:scale-104 transition-all hover:shadow-2xl"
+          style={{ transformStyle: "preserve-3d" }}
+                onMouseMove={(e) => {
+                  const card = e.currentTarget;
+                  const rect = card.getBoundingClientRect();
+
+                  const x = e.clientX - rect.left;
+                  const y = e.clientY - rect.top;
+
+                  const centerX = rect.width / 4;
+                  const centerY = rect.height / 4;
+
+                  const rotateX = ((y - centerY) / centerY) * -12;
+                  const rotateY = ((x - centerX) / centerX) * 12;
+
+                  card.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.transform =
+                    "rotateX(0deg) rotateY(0deg)";
+                }}
         />
       </div>
 
@@ -93,7 +123,9 @@ function App() {
         </div>
 
         <div className="tools mt-32">
-          <h1 className="text-4xl/snug text-text-primary font-bold mb-4">Tools yang di pakai</h1>
+          <h1 className="text-4xl/snug text-text-primary font-bold mb-4">
+            Tools yang di pakai
+          </h1>
           <p className="xl:w-2/5 lg:w-2/4 md:w-2/3 sm:w-3/4 w-full text-base/loose text-text-secondary">
             Berikut ini beberapa tools yang saya pakai untuk membuat website dan
             design
@@ -101,7 +133,6 @@ function App() {
 
           <div className="tools-box mt-14 grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-1 gap-4 [perspective:1000px]">
             {listTools.map((tool) => (
-              
               <div
                 key={tool.id}
                 className=" group flex items-center gap-2 p-4 border border-primary-hover rounded-2xl
@@ -151,7 +182,9 @@ function App() {
 
       {/* proyek */}
       <div className="proyek mt-32 py-10">
-        <h1 className="text-center text-4xl text-text-primary font-bold mb-2">Project</h1>
+        <h1 className="text-center text-4xl text-text-primary font-bold mb-2">
+          Project
+        </h1>
         <p className="text-base/loose text-center text-text-secondary">
           Berikut ini beberapa project yang telah saya kerjakan
         </p>
@@ -167,8 +200,12 @@ function App() {
                 className="rounded-2xl"
               />
               <div>
-                <h1 className="text-2xl text-text-primary font-bold my-4">{proyek.nama}</h1>
-                <p className="text-base/loose text-text-secondary mb-4">{proyek.desk}</p>
+                <h1 className="text-2xl text-text-primary font-bold my-4">
+                  {proyek.nama}
+                </h1>
+                <p className="text-base/loose text-text-secondary mb-4">
+                  {proyek.desk}
+                </p>
                 <div className="flex flex-wrap gap-2">
                   {proyek.tools.map((tool, index) => (
                     <p
@@ -179,13 +216,14 @@ function App() {
                     </p>
                   ))}
                 </div>
-                
               </div>
             </div>
           ))}
         </div>
       </div>
       {/* proyek */}
+
+      
     </>
   );
 }

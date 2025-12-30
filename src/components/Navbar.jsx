@@ -19,12 +19,12 @@ const Navbar = () => {
     },[]);
 
   return (
-    <div className='navbar sticky left-0 top-0 right-0 w-full py-3 flex items-center justify-between px-6
+    <div className='navbar fixed left-0 top-0 right-0 w-full py-3 flex z-50 items-center justify-between px-6
     transition-all duration-300 ease-in-out rounded-b-4xl
     ${active ? "bg-black/80 backdrop-blur-md shadow-lg" : "bg-transparent"}
     '>
         <div className='logo'>
-        <h1 className='text-3xl font-bold bg-white text-text-primary p-1 md:bg-transparent md:text-white'>Portofolio</h1>
+        <h1 className='text-4xl font-bold bg-white text-text-active p-1 md:bg-transparent md:text-text-active'>Portofolio</h1>
         </div>
 
         <ul className={`menu flex items-center sm:gap-10 gap-4 md:static text-lg font-medium fixed left-1/2 -translate-x-1/2 
@@ -33,19 +33,35 @@ const Navbar = () => {
             active ? "top-0 opacity-100" : "-top-10 opacity-0"
             }`}>
             <li>
-                <a href="#" className='sm:text-lg text-base font-medium hover:font-semibold transition-all duration-200'>
+                <a href="#" className="relative sm:text-lg text-primary font-medium
+               after:absolute after:left-0 after:-bottom-1
+               after:h-[2px] after:w-0 after:bg-primary
+               after:transition-all after:duration-300
+               hover:after:w-full">
                     Beranda</a>
             </li>
             <li>
-                <a href="#" className='sm:text-lg text-base font-medium hover:font-semibold transition-all'>
+                <a href="#" className="relative sm:text-lg text-primary font-medium
+               after:absolute after:left-0 after:-bottom-1
+               after:h-[2px] after:w-0 after:bg-primary
+               after:transition-all after:duration-300
+               hover:after:w-full">
                     Tentang</a>
             </li>
             <li>
-                <a href="#" className='sm:text-lg text-base font-medium hover:font-semibold transition-all'>
+                <a href="#" className="relative sm:text-lg text-primary font-medium
+               after:absolute after:left-0 after:-bottom-1
+               after:h-[2px] after:w-0 after:bg-primary
+               after:transition-all after:duration-300
+               hover:after:w-full">
                     Projek</a>
             </li>
             <li>
-                <a href="#" className='sm:text-lg text-base font-medium hover:font-semibold transition-all'>
+                <a href="#Social" className="relative sm:text-lg text-primary font-medium
+               after:absolute after:left-0 after:-bottom-1
+               after:h-[2px] after:w-0 after:bg-primary
+               after:transition-all after:duration-300
+               hover:after:w-full">
                     Kontak</a>
             </li>
         </ul>
